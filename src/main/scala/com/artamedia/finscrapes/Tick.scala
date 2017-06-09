@@ -1,3 +1,5 @@
 package com.artamedia.finscrapes
 
-case class Tick(symbol: String, closePrice: Double)
+import java.time.LocalDate
+
+case class Tick(symbol: String, date: LocalDate, closePrice: Double)
