@@ -1,0 +1,21 @@
+group 'artamedia'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'scala'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'org.scalacheck', name: 'scalacheck_2.12', version: '1.13.5'
+    testCompile 'org.scalatest:scalatest_2.12:3.0.4'
+    testCompile 'junit:junit:4.12'
+
+    compile 'org.scala-lang:scala-library:2.12.3'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.53.0'
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.10.3'
+
+}

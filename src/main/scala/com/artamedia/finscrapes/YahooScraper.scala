@@ -4,13 +4,14 @@ import java.time.LocalDate
 
 import org.jsoup.Jsoup
 
-class GoogleScraper
+class YahooScraper
   extends Scraper {
 
-  override def get(symbol: String)(implicit provider: WebProvider) = {
-    def url = s"https://www.google.co.uk/search?hl=en&q=$symbol+share+price"
+  override def get(symbol: String)(implicit provider: WebProvider): Option[Tick] = {
+    def url = s"https://uk.finance.yahoo.com/quote/$symbol?ltr=1"
+
     val doc = Jsoup.parse(provider.get(url))
-    val tag = doc.getElementsByClass("_Rnb fmob_pr fac-l")
+    val tag = doc.getElementsByClass("Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)")
     if (!tag.isEmpty) {
       val px = tag.get(0).text()
       Some(Tick(symbol, LocalDate.now(), px.toDouble))
@@ -18,4 +19,5 @@ class GoogleScraper
     else
       None
   }
+
 }
